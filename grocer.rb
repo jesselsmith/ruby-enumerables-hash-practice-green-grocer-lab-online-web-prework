@@ -54,4 +54,6 @@ cart =     {
       "KALE"    => {:price => 3.00, :clearance => false, :count => 1}
     }
     
-p apply_coupons(cart, coupons)    
+result = apply_coupons(cart, coupons)    
+
+puts result["AVOCADO"][:price]
