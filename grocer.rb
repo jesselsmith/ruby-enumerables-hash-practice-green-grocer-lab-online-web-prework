@@ -23,12 +23,18 @@ def apply_coupons(cart, coupons = [])
       if (cutout[:item] == key) && (cutout[:num] <= value[:count])
         new_key = "#{key} W/COUPON"
         remainder = value[:count] - cutout[:num]
-        memo[new_key] = {}
-        memo[new_key][:price] = cutout[:cost] / cutout[:num]
-        memo[new_key][:clearance] = value[:clearance]
-        memo[new_key][:count] = value[:count] - remainder
-        memo[key] = value
-        memo[key][:count] = remainder
+        
+        if memo.has_key? new_key
+          memo[new_key][:count] += cutout[:num]
+          memo[key][:count] = remainder
+        else
+          memo[new_key] = {}
+          memo[new_key][:price] = cutout[:cost] / cutout[:num]
+          memo[new_key][:clearance] = value[:clearance]
+          memo[new_key][:count] = cutout[:num]
+          memo[key] = value
+          memo[key][:count] = remainder
+        end
       else
         memo[key] = value
       end
