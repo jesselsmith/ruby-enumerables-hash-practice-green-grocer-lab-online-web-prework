@@ -27,9 +27,8 @@ def apply_coupons(cart, coupons = [])
         memo[new_key][:price] = cutout[:cost] / cutout[:num]
         memo[new_key][:clearance] = value[:clearance]
         memo[new_key][:count] = value[:count] - remainder
-        
-          memo[key] = value
-          memo[key][:count] = remainder
+        memo[key] = value
+        memo[key][:count] = remainder
         end
       else
         memo[key] = value
