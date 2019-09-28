@@ -14,7 +14,10 @@ def consolidate_cart(cart)
   consolidated_cart
 end
 
-def apply_coupons(cart, coupons)
+def apply_coupons(cart, coupons = [])
+  if coupons == []
+    return cart
+  end
   cart_with_coupons = cart.reduce({}) do |memo, (key, value)|
     coupons.each do |cutout|
       if (cutout[:item] == key) && (cutout[:num] <= value[:count])
