@@ -48,4 +48,5 @@ def checkout(cart, coupons)
   # code here
 end
 
-coupons = 
+coupons = [{:item => "AVOCADO", :num => 2, :cost => 5.00}]
+cart = 
