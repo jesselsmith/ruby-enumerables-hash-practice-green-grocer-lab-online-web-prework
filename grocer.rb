@@ -45,7 +45,14 @@ def apply_coupons(cart, coupons = [])
 end
 
 def apply_clearance(cart)
-  # code here
+  cart_with_clearance = cart.reduce({}) do |memo, (key, value)|
+    memo[key] = value  
+    if value[:clearance]
+      memo[key][:price] *= .8
+    end
+    memo
+  end
+  cart_with_clearance
 end
 
 def checkout(cart, coupons)
