@@ -57,6 +57,11 @@ end
 
 def checkout(cart, coupons)
   # code here
+  receipt = apply_clearance(apply_coupons( consolidate_cart(cart), coupons))
+  
+  receipt.reduce(0){|memo, (key, value)|
+    memo += ( value[:price] * value[:count] ).round(2)
+  }
 end
 
 coupons = [{:item => "AVOCADO", :num => 2, :cost => 5.00}]
