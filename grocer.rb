@@ -22,7 +22,7 @@ def apply_coupons(cart, coupons = [])
     coupons.each do |cutout|
       if (cutout[:item] == key) && (cutout[:num] <= value[:count])
         new_key = "#{key} W/COUPON"
-        remainder = value[:count] % cutout[:num]
+        remainder = value[:count] - cutout[:num]
         memo[new_key] = {}
         memo[new_key][:price] = cutout[:cost] / cutout[:num]
         memo[new_key][:clearance] = value[:clearance]
